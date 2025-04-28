@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:map/unit_list_screen.dart';
 import 'map_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,13 +14,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    const WelcomePage(),
-    const MapScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _pages = [
+      const WelcomePage(),
+      MapScreen(token: widget.token),
+      UnitListScreen(token: widget.token), // دیگه const نمیذاری
+    ];
+
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -38,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
